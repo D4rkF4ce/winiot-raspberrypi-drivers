@@ -1,5 +1,5 @@
 # winiot-raspberrypi-drivers
-Reference project for driver examples with WinIOT Core on a Raspberry Pi 3 (GPOI &amp; I2C)
+Reference project for driver examples with WinIOT Core on a Raspberry Pi 3 (GPIO &amp; I2C)
 
 Inspired by https://github.com/jeremylindsayni/Magellanic.Sensors.DS1307
 
