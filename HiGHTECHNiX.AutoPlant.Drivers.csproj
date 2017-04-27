@@ -107,16 +107,28 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdafruitBME280\BME280_eRegisters.cs" />
-    <Compile Include="AdafruitBME280\BME280_Sensor.cs" />
-    <Compile Include="AdafruitBME280\BME280_CalibrationData.cs" />
-    <Compile Include="I2CDeviceFactory.cs" />
-    <Compile Include="I2CDevices.cs" />
-    <Compile Include="I2cSlave.cs" />
+    <Compile Include="Library\AdafruitBME280\BME280_eRegisters.cs" />
+    <Compile Include="Library\AdafruitBME280\BME280_Sensor.cs" />
+    <Compile Include="Library\AdafruitBME280\BME280_CalibrationData.cs" />
+    <Compile Include="Collection\Hygrometer.cs" />
+    <Compile Include="Collection\PowerRelay.cs" />
+    <Compile Include="Collection\RealTimeClock.cs" />
+    <Compile Include="ConnectionInterfaces\GPIO\GPIODeviceFactory.cs" />
+    <Compile Include="ConnectionInterfaces\GPIO\GPIODevices.cs" />
+    <Compile Include="ConnectionInterfaces\GPIO\GPIOSlave.cs" />
+    <Compile Include="ConnectionInterfaces\I2C\I2CDeviceFactory.cs" />
+    <Compile Include="ConnectionInterfaces\I2C\I2CDevices.cs" />
+    <Compile Include="ConnectionInterfaces\I2C\I2CSlave.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SainSmart2CannelRelay\SainSmart_2_Channel_Relay.cs" />
-    <Compile Include="SainSmartDS1307RTC\SainSmart_DS_1307_RTC.cs" />
+    <Compile Include="Library\SainSmart2CannelRelay\SainSmart_2_Channel_Relay.cs" />
+    <Compile Include="Library\SainSmartDS1307RTC\SainSmart_DS_1307_RTC.cs" />
     <EmbeddedResource Include="Properties\HiGHTECHNiX.AutoPlant.Drivers.rd.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Persistence\HiGHTECHNiX.AutoPlant.Helper\HiGHTECHNiX.AutoPlant.Helper.csproj">
+      <Project>{E97486A7-B2B1-4153-8D53-44FE7D5AFA32}</Project>
+      <Name>HiGHTECHNiX.AutoPlant.Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
