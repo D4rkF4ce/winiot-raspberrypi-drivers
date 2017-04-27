@@ -2,14 +2,13 @@
 using System.Threading.Tasks;
 using HiGHTECHNiX.AutoPlant.Drivers.ConnectionInterfaces.GPIO;
 using HiGHTECHNiX.AutoPlant.Drivers.Library.SainSmart2CannelRelay;
-using HiGHTECHNiX.AutoPlant.Helper;
-
 namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
 {
     public class PowerRelay
     {
         private SainSmart_2_Channel_Relay _relay;
         private GPIODevices _deviceType;
+        private string family = Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily;
         public bool IsRunning { get; set; }
 
         public PowerRelay(GPIODevices gpioDevice)
@@ -18,7 +17,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
         }
         public async Task SwitchOn()
         {
-            if (SystemHelper.Instance.IsARMDevice)
+            if (family != "Windows.Desktop")
             {
                 if (!IsRunning)
                 {
@@ -37,12 +36,12 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
             }
             else
             {
-                Debug.WriteLine(SystemHelper.Instance.GetNoARMDeviceErrorMessage());
+                Debug.WriteLine("This is not a ARM device.");
             }
         }
         public async Task SwitchOff()
         {
-            if (SystemHelper.Instance.IsARMDevice)
+            if (family != "Windows.Desktop")
             {
                 if (IsRunning)
                 {
@@ -61,7 +60,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
             }
             else
             {
-                Debug.WriteLine(SystemHelper.Instance.GetNoARMDeviceErrorMessage());
+                Debug.WriteLine("This is not a ARM device.");
             }
         }
     }

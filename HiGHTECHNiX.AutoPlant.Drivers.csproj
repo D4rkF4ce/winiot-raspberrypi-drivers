@@ -124,12 +124,6 @@
     <Compile Include="Library\SainSmartDS1307RTC\SainSmart_DS_1307_RTC.cs" />
     <EmbeddedResource Include="Properties\HiGHTECHNiX.AutoPlant.Drivers.rd.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Persistence\HiGHTECHNiX.AutoPlant.Helper\HiGHTECHNiX.AutoPlant.Helper.csproj">
-      <Project>{E97486A7-B2B1-4153-8D53-44FE7D5AFA32}</Project>
-      <Name>HiGHTECHNiX.AutoPlant.Helper</Name>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

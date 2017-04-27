@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using HiGHTECHNiX.AutoPlant.Drivers.ConnectionInterfaces.I2C;
 using HiGHTECHNiX.AutoPlant.Drivers.Library.AdafruitBME280;
-using HiGHTECHNiX.AutoPlant.Helper;
 
 namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
 {
@@ -10,7 +9,8 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
     {
         private BME280_Sensor _bme280;
         private I2CDevices _deviceType;
-
+        private string family = Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily; 
+           
         public Hygrometer(I2CDevices i2cDevice)
         {
             _deviceType = i2cDevice;
@@ -19,7 +19,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
         {
             float returnValue = -1;
 
-            if (SystemHelper.Instance.IsARMDevice)
+            if (family != "Windows.Desktop")
             {
                 var slave = await I2CDeviceFactory.GetI2CDevice(_deviceType);
                 if (slave != null)
@@ -32,7 +32,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
             }
             else
             {
-                Debug.WriteLine(SystemHelper.Instance.GetNoARMDeviceErrorMessage());
+                Debug.WriteLine("This is not a ARM device.");
             }
 
             return returnValue;
@@ -41,7 +41,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
         {
             float returnValue = -1;
 
-            if (SystemHelper.Instance.IsARMDevice)
+            if (family != "Windows.Desktop")
             {
                 var slave = await I2CDeviceFactory.GetI2CDevice(_deviceType);
                 if (slave != null)
@@ -54,7 +54,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
             }
             else
             {
-                Debug.WriteLine(SystemHelper.Instance.GetNoARMDeviceErrorMessage());
+                Debug.WriteLine("This is not a ARM device.");
             }
 
             return returnValue;
@@ -63,7 +63,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
         {
             float returnValue = -1;
 
-            if (SystemHelper.Instance.IsARMDevice)
+            if (family != "Windows.Desktop")
             {
                 var slave = await I2CDeviceFactory.GetI2CDevice(_deviceType);
                 if (slave != null)
@@ -76,7 +76,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
             }
             else
             {
-                Debug.WriteLine(SystemHelper.Instance.GetNoARMDeviceErrorMessage());
+                Debug.WriteLine("This is not a ARM device.");
             }
 
             return returnValue;

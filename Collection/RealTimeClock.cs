@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using HiGHTECHNiX.AutoPlant.Drivers.ConnectionInterfaces.I2C;
 using HiGHTECHNiX.AutoPlant.Drivers.Library.SainSmartDS1307RTC;
-using HiGHTECHNiX.AutoPlant.Helper;
 
 namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
 {
@@ -11,6 +10,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
     {
         private SainSmart_DS_1307_RTC _rtc;
         private I2CDevices _deviceType;
+        private string family = Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily;
 
         public RealTimeClock(I2CDevices i2cDevice)
         {
@@ -18,7 +18,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
         }
         public async Task SetDateTime(DateTime dateTime)
         {
-            if (SystemHelper.Instance.IsARMDevice)
+            if (family != "Windows.Desktop")
             {
                 var slave = await I2CDeviceFactory.GetI2CDevice(_deviceType);
                 using (_rtc = new SainSmart_DS_1307_RTC(slave))
@@ -28,14 +28,14 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
             }
             else
             {
-                Debug.WriteLine(SystemHelper.Instance.GetNoARMDeviceErrorMessage());
+                Debug.WriteLine("This is not a ARM device.");
             }
         }
         public async Task<DateTime> GetDateTime()
         {
             DateTime returnDate = DateTime.MinValue;
 
-            if (SystemHelper.Instance.IsARMDevice)
+            if (family != "Windows.Desktop")
             {
                 var slave = await I2CDeviceFactory.GetI2CDevice(_deviceType);
                 using (_rtc = new SainSmart_DS_1307_RTC(slave))
@@ -45,7 +45,7 @@ namespace HiGHTECHNiX.AutoPlant.Drivers.Collection
             }
             else
             {
-                Debug.WriteLine(SystemHelper.Instance.GetNoARMDeviceErrorMessage());
+                Debug.WriteLine("This is not a ARM device.");
             }
 
             return returnDate;
